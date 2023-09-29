@@ -11,7 +11,7 @@ void run_testcase()
     for (int i = 0; i < n; i++)
     {
         cin >> dominoe;
-        
+
         if (i < max && i + dominoe > max)
             max = i + dominoe;
     }
@@ -25,9 +25,7 @@ int main()
     cin >> t;
 
     for (int i = 0; i < t; i++)
-    {
         run_testcase();
-    }
 
     return 0;
 }
