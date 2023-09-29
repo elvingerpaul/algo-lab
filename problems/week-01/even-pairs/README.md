@@ -1,0 +1,4 @@
+## intuition
+When reading in the numbers, we calculate a cumulative sum and keep odd and even counters for saving the number of times the accumulative sum was odd or even. The sum x_i + ... + x_j for a pair (i,j) is even if the cumulative sum at index i and index j is either both even or odd. When knowing how many times the cumulative sum was even and odd, we can calculate the number of combinations of indices where the cumulative sum was even or odd. We need to start the even counter at 1 as if there was a dummy 0 at index -1. This will make sure that we also consider all the sums x_0 + ... + x_i for index i, such that the overall sum was positive. Example if the cumulative sum was even three times, the even counter will be 4 and we get the number of possible pairs for the even indices will be n * (n-1) / 2 = 4 * 3 / 2. We need to add the same for the odd indices and will obtain the final result.
+\\
+Runtime: O(n)
