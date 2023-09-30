@@ -5,3 +5,5 @@ Makefile
 introduction-to-cpp.pdf
 tutorials
 *.out
+tutorials
+*.pdf
