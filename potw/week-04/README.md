@@ -1,5 +1,9 @@
 ## Intuition
 
+Tags: Sliding window, prefix sum, binary seach, sorting
+
+As we cannot visit an islands more than once and given the network topology of waterways that all meet in 0 (Pyke), one can extract that this problem is about finding paths of islands where the number of men needed to conquer each island is exactly equalt to the number of men k at our disposal. Two situations can occur, either the path is within a single waterway or the path is across two waterways and must pass through Pyke (0). There cannot be more than two waterways involved as we're not allowed to visit an islands more than once.
+
 Solutions tried out:
 - run johnson all pair shortest paths: not enough memory to allocate 2-dimensional matrix (nxn) where n is the number of islands to store distance between each pair of nodes
 - concatenate each pair of waterways and run sliding window on each of them. Requires to reverse one array and remove origin from it (to avoid having pyke in the concatenation twice). Too slow for testcases 3 and 4
