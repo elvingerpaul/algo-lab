@@ -20,21 +20,21 @@ typedef graph_traits<graph_t>::edge_descriptor edge_desc;
 void add_teleport_edges(graph_t &G, const vint &teleport_nodes, const vint &components, int num_components)
 {
     /**
-     * rather than adding a direct edge between two teleport nodes in same
-     * component, we create a new vertex for the corresponding component and add
-     * an edge from the telport node to the component with a weight that is equal
-     * to the size of the component-1 and an edge from the new node to the teleport
-     * node with a weight equal to 0.
-     *
-     * That way two nodes part of the same component can reach each other over the
-     * newly added component node and the "distance" it takes to get there is equal
-     * to the size of the component.
-     *
-     * This approach only requires to iterate over the number of teleport nodes
-     * twice, while adding an edge between the two nodes directly would require
-     * looping over all possible pairs of vertices and check if they are part of
-     * the same component which woul leave us with O(n^2) instead of O(T)
-     */
+   * rather than adding a direct edge between two teleport nodes in same
+   * component, we create a new vertex for the corresponding component and add
+   * an edge from the telport node to the component with a weight that is equal
+   * to the size of the component-1 and an edge from the new node to the teleport
+   * node with a weight equal to 0.
+   * 
+   * That way two nodes part of the same component can reach each other over the
+   * newly added component node and the "distance" it takes to get there is equal
+   * to the size of the component.
+   * 
+   * This approach only requires to iterate over the number of teleport nodes
+   * twice, while adding an edge between the two nodes directly would require
+   * looping over all possible pairs of teleport nodes and check if they are part of
+   * the same component which would leave us with O(T^2) instead of O(T)
+   */
     weight_m weights = get(edge_weight, G);
 
     // count the size of each component required for the weight of the edge
