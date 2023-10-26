@@ -1,0 +1,4 @@
+## Intuition
+
+As calculating the actual intersection point is more expensive than just checking if there is an intersection we will always do a preliminary check to only calculate intersections when necessary.
+A trick to further reduce the number of intersections that we have to calculate is to maintain a best segment from the ray source to the current first hit found. We always check new segments with this best segment. There might be segments that intersect the ray but they don't necessarily intersect the current best segment. This is sufficient to pass all tests except the last one. In order to also pass the last one we will first read in all segments and then shuffle the array in a random order. With the approach above it could happen that the input is passed in a bad way on purpose that makes us calculate a lot of intersections which we can get rid of by random shuffling.
