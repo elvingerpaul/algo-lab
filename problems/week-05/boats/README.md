@@ -1,0 +1,2 @@
+### Intuition
+We solve the problem with a greedy approach by always adding a boat whenever it is possible. We therefore maintain a pointer of the current right end of the last boat that we choose. In addition we maintain a pointer of the right end of the second last boat that we chose, beacuse we might be able to optimize our current best right pointer with a new boat that has its position further right but because of a shorter length we will still be able to approve the current best right pointer.
