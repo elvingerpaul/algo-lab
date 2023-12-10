@@ -1,0 +1,2 @@
+### Intuition
+We want to build an euclidean minimum spanning tree using only the jammer nodes and ensure that we don't exceed the power consumption. To efficiently build the EMST we will calculate the Delaunay triangulation of the jammer nodes, such that the EMST can be build in linear time. For each of the mission we verify the distance from src to the nearest jammer node j_src and from dest to the nearest jammer node j_dest. We use a union find structure to verify whether j_src and j_dest are part of the same partition, i.e the mission is possible.

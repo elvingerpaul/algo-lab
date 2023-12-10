@@ -13,3 +13,4 @@ Code requires C++, CGAL, BGL. See https://cadmo.ethz.ch/education/lectures/HS23/
 | 4    | [Iron Islands](potw/week-04/)                             | [Hit](problems/week-04/hit/)                     | [First Hit](problems/week-04/first-hit/)                          | [Antenna](problems/week-04/antenna/)                     | [Hiking Maps](problems/week-04/hiking-maps/) |
 | 5    | [Planet Express](potw/week-05/)                             | [Boats](problems/week-05/boats/)                     | -                          | -                     | - |
 | 6    |                              |  [London](problems/week-06/london/)                    | -                          | -                     | - |
+| 7    |                              |  [Golden Eye](problems/week-07/golden-eye/)                    | -                          | -                     | - |
