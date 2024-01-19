@@ -1,0 +1,8 @@
+tags: Linear Programming
+
+## Intuition
+The inequalities we're given define the space that our d-dimensional ball is allowed to live in. What is unknown is the center of that ball as well as its radius. Intuitively the volume of the ball will be biggest when we're furthest away from each hyperplane (boundary) that defines the cave. Let us call the center of the ball `c` and the its radius `r`.
+
+How can we now define a point `P` that is on the circle into the direction of the hyperplane `h = {x | a^T * x = b}` where `a` is the normal vector of `h`, i.e it is perpendicular to `h`. Thus we can express the point `p` as moving "away" from then center `c` into the direction of the normal vector `a` by it's radius. Mathematically this can be expressed as `p = c + r * a / |a|` where `a/|a|` denotes the vector of length 1 into the direction of `a`. We now want this point to be within the halfspace `H = {x | a^T * x <= b}`. We simply need to plug in our expression of `p` into the condition and we obtain that it needs to hold `a^T * (c + r * a / |a|) <= b` which simplifies to `a^T * c + r * |a| <= b`. If we now add such a constraint for each halfspace that defines the cave and maximize for the radius `r`, we will obtain the center of the d-dimensional ball given that the a solution exists.
+
+Note that this requires to simply add one variable to the inequations we're already given in the input. In addition we're told that `|a|` is guaranteed to be an integer which means that all the input coefficients to our solver are integers. We can thus choose our input type to be `int`.
