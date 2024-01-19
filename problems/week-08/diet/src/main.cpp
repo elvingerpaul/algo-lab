@@ -12,14 +12,14 @@ typedef CGAL::Gmpz ET;
 typedef CGAL::Quadratic_program<IT> Program;
 typedef CGAL::Quadratic_program_solution<ET> Solution;
 
-double floor_to_long(const CGAL::Quotient<ET> &x)
+long floor_to_long(const CGAL::Quotient<ET> &x)
 {
     double a = std::floor(CGAL::to_double(x));
     while (a > x)
         a -= 1;
     while (a + 1 <= x)
         a += 1;
-    return a;
+    return long(a);
 }
 
 void testcase(int n, int m)
@@ -52,7 +52,7 @@ void testcase(int n, int m)
     if (s.is_infeasible())
         std::cout << "No such diet.\n";
     else
-        std::cout << long(floor_to_long(s.objective_value())) << "\n";
+        std::cout << floor_to_long(s.objective_value()) << "\n";
 }
 
 int main()
