@@ -10,3 +10,5 @@ To solve the problem we define a 2-dim DP table `d` of dimensions `k x n`, where
 What is left is to specify how we calculate the entries in the DP table.
 - Initialization: `dp[0][:] = 0` since we cannot score any points with 0 moves no matter where we start from
 - Update: Proceed row by row, `dp[k][i] = max_{over all successor nodes j of i}(dp[k-1][j] + points[i -> j])` where `points[i -> j]` is the number of points one obtains when going from i to j
+
+Note an optimization could be to reduce the size of the DP table. Since we're only interested in having the results of the step `k-1` in order to calculate the entries for `k`, two rows of length `n` shuld sufficient.
