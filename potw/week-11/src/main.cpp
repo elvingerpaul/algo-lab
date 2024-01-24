@@ -77,6 +77,7 @@ void testcase()
         int middle = (left + right) / 2;
 
         // try to send middle suitcases through network
+        // by adjusting the capacity of the source edge, we control what the max flow can be
         c_map[source_edge] = middle;
         boost::successive_shortest_path_nonnegative_weights(G, v_source, v_sink);
         int cost = boost::find_flow_cost(G);
