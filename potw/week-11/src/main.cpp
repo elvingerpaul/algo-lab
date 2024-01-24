@@ -52,6 +52,7 @@ void testcase()
     graph G(c);
     edge_adder adder(G);
     auto c_map = boost::get(boost::edge_capacity, G);
+    auto r_map = boost::get(boost::edge_reverse, G);
     auto rc_map = boost::get(boost::edge_residual_capacity, G);
     const vertex_desc v_source = boost::add_vertex(G);
     const vertex_desc v_sink = boost::add_vertex(G);
@@ -67,6 +68,7 @@ void testcase()
 
     // or edge_desc source_edge = boost::edge(v_source, k, G).first;
     edge_desc source_edge = adder.add_edge(v_source, k, sum_elephants, 0);
+    edge_desc rev_source_edge = r_map[source_edge];
     adder.add_edge(a, v_sink, sum_elephants, 0);
 
     int left = 0;
@@ -79,6 +81,7 @@ void testcase()
         // try to send middle suitcases through network
         // by adjusting the capacity of the source edge, we control what the max flow can be
         c_map[source_edge] = middle;
+        c_map[rev_source_edge] = 0; // note sure whether we need to reset this to 0 as well -> also works without
         boost::successive_shortest_path_nonnegative_weights(G, v_source, v_sink);
         int cost = boost::find_flow_cost(G);
 
