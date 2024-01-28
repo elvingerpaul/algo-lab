@@ -1,11 +1,11 @@
 #include <CGAL/QP_models.h>
 #include <CGAL/QP_functions.h>
-#include <CGAL/Gmpq.h>
+#include <CGAL/Gmpz.h>
 
 // choose input type (input coefficients must fit)
-typedef CGAL::Gmpq IT;
+typedef int IT;
 // choose exact type for solver (CGAL::Gmpz or CGAL::Gmpq)
-typedef CGAL::Gmpq ET;
+typedef CGAL::Gmpz ET;
 
 // program and solution types
 typedef CGAL::Quadratic_program<IT> Program;
@@ -47,10 +47,8 @@ Program lp;
 int floor_to_int(const CGAL::Quotient<ET> &x)
 {
     double a = std::floor(CGAL::to_double(x));
-    while (a > x)
-        a -= 1;
-    while (a + 1 <= x)
-        a += 1;
+    while (a > x) a -= 1;
+    while (a + 1 <= x) a += 1;
     return (int)a;
 }
 
@@ -83,19 +81,17 @@ Result dfs(int mine, int m)
 
         // sum of all resources must be at most half of danger value
         for (int i = 0; i < m; i++)
-        {
-            lp.set_a(var_offset + i, cstr_offset, 1);
-        }
-        lp.set_b(cstr_offset, 0.5 * mines[mine].d);
+            lp.set_a(var_offset + i, cstr_offset, 2);
+        lp.set_b(cstr_offset, mines[mine].d);
         cstr_offset++;
 
         // for each mineral the outcome can be at most half of the sum of all inputs
         for (int i = 0; i < m; i++)
         {
             for (int var_idx : vars[i])
-                lp.set_a(var_idx, cstr_offset, -0.5);
-            lp.set_a(var_offset + i, cstr_offset, 1);
-            lp.set_b(cstr_offset, 0.5 * sums[i]);
+                lp.set_a(var_idx, cstr_offset, -1);
+            lp.set_a(var_offset + i, cstr_offset, 2);
+            lp.set_b(cstr_offset, sums[i]);
             cstr_offset++;
         }
 
@@ -117,15 +113,13 @@ Result dfs(int mine, int m)
 
 void testcase()
 {
-    int n, m;
-    std::cin >> n >> m;
+    int n, m; std::cin >> n >> m;
 
     mines = vmine(n);
     int danger_idx = 0; // assign each danger a unique id
     for (int i = 0; i < n; i++)
     {
-        int d;
-        std::cin >> d;
+        int d; std::cin >> d;
 
         vint r(m);
         for (int j = 0; j < m; j++)
@@ -141,8 +135,7 @@ void testcase()
     vint degrees(n, 0);
     for (int i = 0; i < n - 1; i++)
     {
-        int u, v;
-        std::cin >> u >> v;
+        int u, v; std::cin >> u >> v;
         g[v].push_back(u); // add edge reverse
         degrees[u]++;      // count in degrees to find source
     }
@@ -150,8 +143,7 @@ void testcase()
     vmineral mineral(m);
     for (int i = 0; i < m; i++)
     {
-        int c, s, p;
-        std::cin >> c >> s >> p;
+        int c, s, p; std::cin >> c >> s >> p;
         mineral[i] = {c, s, p};
     }
 
@@ -177,9 +169,7 @@ void testcase()
     for (int i = 0; i < m; i++)
     {
         for (int var_idx : res.vars[i])
-        {
             lp.set_a(var_idx, cstr_offset, -1);
-        }
         lp.set_a(var_offset + i, cstr_offset, -1); // add potential buy-in
         lp.set_b(cstr_offset, res.sums[i] - mineral[i].amount);
         cstr_offset++;
@@ -201,9 +191,7 @@ void testcase()
 int main()
 {
     std::ios_base::sync_with_stdio(false);
-    int t;
-    std::cin >> t;
-    while (t--)
-        testcase();
+    int t; std::cin >> t;
+    while (t--) testcase();
     return 0;
 }
