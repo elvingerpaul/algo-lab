@@ -16,22 +16,15 @@ void testcase()
     int window_sum = cards[0];
     int best_diff = std::abs(window_sum - k);
 
-    if (k == 0)
-    { // edge case
-        std::cout << "0 0\n";
-        return;
-    }
-
-    // window_sum includes elements from [left, right]
     while (true)
     {
-        if ((window_sum < k && right == n - 1) || left == n)
+        if ((window_sum < k && right == n - 1) || left == n - 1)
             break;
 
         if (left == n)
             break;
 
-        if (window_sum < k)
+        if (window_sum < k || left == right) // left should not be allowed to overtake right
             window_sum += cards[++right];
         else
             window_sum -= cards[left++];
