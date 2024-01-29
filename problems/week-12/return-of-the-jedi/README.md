@@ -1,0 +1,6 @@
+tags: MST, DFS
+
+## Intuition
+The construction of Princess Leia's network corresponds to the construction of a MST. The solution consits in finding a second MST (potentially with bigger weight or equal). We have to replace one edge of the original MST, which partitions the MST into 2 upon removing the edge. We thus need to add a new edge that will reconnect both parititons such that the overhead is minimal.
+Note that this doesn't necessarily means to add the next edge with minimal weight if we would have continued the Kruskal algorithm for one more round. But it consists in finding an edge `e` originally not part of the MST that connects nodes `a` and `b` with a weight `w`. We then check what the longest edge is on the path from `a` to `b` when using only edges from the MST. Let `e'` with weight `w'` be that longest edge on the path from `a` to `b`. When removing `e` and adding `e'` the overhead in the overall cost is going to be `w' - w`. Thus we're looking for the edges `e` and `e'` such that the overhead is minimized.
+This requires that the longest edge between any pair of nodes in the MST is known. This can be done by running a DFS from each node in the MST to all other nodes. In the end we simply need to loop over all edges not part of the original MST and check its overhead. We pick the edge with the smallest overhead.
