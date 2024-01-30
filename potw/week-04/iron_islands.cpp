@@ -133,7 +133,7 @@ void testcase()
         }
     }
 
-    // sliding window for paths within single waterway
+    // sliding window for highest num of islands that can potentially be conquered in single waterway
     int maxi = 0;
     for (int i = 0; i < w; i++)
     {

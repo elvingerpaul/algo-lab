@@ -6,7 +6,7 @@ We can sort of slightly modify the problem statement in that we are looking for 
 To simplify this we will create two graphs `fwd` and `bwd` that contain the set of forward edges and backward edges respecitvely however the edges are always directed from the node with the smaller index to the node with the bigger index, i.e `(u,v)` such that `u < v`.
 
 ### DP
-Let us now define a DP table of dimensions `n x n` where `n` is the number of public places and let `dp[i][j]` correspond to the maxium number of rats that we can collect when starting our path `a` in `i` going all the way up to `n-1` and coming back to `j` again. The solution will be in `dp[0][0]`. Below we use `w(i -> j)` to be the weight/rats when traversing edge i->j. We will fill the table out in the following manner
+Let us now define a DP table of dimensions `n x n` where `n` is the number of public places and let `dp[i][j]` correspond to the maxium number of rats that we can collect when starting our path `a` in `i` going all the way up to `n-1` and coming back to `i` again. The solution will be in `dp[0][0]`. Below we use `w(i -> j)` to be the weight/rats when traversing edge i->j. We will fill the table out in the following manner
 - initialization: `dp[i][j] = -2` for `0 <= i, j < n`
 - update:
     - if i == j == n-1: `dp[i][j] = 0`

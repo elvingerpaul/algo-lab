@@ -46,7 +46,7 @@ void testcase(int n)
 
             if (neighbor_id == 0)
                 // since undirected graph we need edges in both directions but we
-                // will not iterate over infinite edges, reason we add it here
+                // will not iterate over infinite faces, reason we add it here
                 graph[0].push_back(std::make_pair(f->info(), squared_dist));
         }
     }

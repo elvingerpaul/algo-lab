@@ -13,3 +13,6 @@ Complexity:
 - sorting the bridges array O(E*log(E))
 
 overall complexity should be O(V + E*log(E))
+
+## Solution 2
+Look at all connected components that consist of only a single edge.
