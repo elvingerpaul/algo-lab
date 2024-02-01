@@ -1,0 +1,7 @@
+tags: maxflow
+
+## Intuition
+A free standing union must have a sum of balances that is strictly > 0 taking into account all the debts that need to be payed to provinces outside the union. For such a union to exist it's balances must be greater than the amount of money that has to flow out of the union to other provinces. This means that if this indeed possible the union posses more money than it can potentially send out which should remind us of flows. Whenever there is a free standing union there must be a bottleneck somewhere in the network that prevents the amount of flow that was send in to be send out again.
+We create a graph where each province is a node. If its balance is positive we consider this as a supply of money, i.e adding an edge from the source to the province with a capacitiy equalt to the balance. If its balance is negative we consider this as a demand of money which is modeled by an edge from the province to the sink (careful to negate the balance in order to make the capacity postive). The debts between provinces are modeleded as normal edges between them with the debt equal to the amount that has to be paid.
+
+We can sum up the amount of flow that is send into the network, if it is less than the amount that comes out, it means we have a bottleneck, i.e some set of provinces have more money than they can possibly send out again, thus reflecting an overall positive balance.
