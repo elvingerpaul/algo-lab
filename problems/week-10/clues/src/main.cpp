@@ -116,8 +116,8 @@ void testcase()
         white_t.insert(white_points.begin(), white_points.end());
         black_t.insert(black_points.begin(), black_points.end());
         // check that all edges are longer than r
-        bipartite = bipartite & verify_triangulation(white_t, r);
-        bipartite = bipartite & verify_triangulation(black_t, r);
+        bipartite = bipartite && verify_triangulation(white_t, r);
+        bipartite = bipartite && verify_triangulation(black_t, r);
     }
 
     for (int i = 0; i < m; i++)
