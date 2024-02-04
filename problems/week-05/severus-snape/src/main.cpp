@@ -78,7 +78,7 @@ void testcase()
                 if (sum_wit - j * a < wit)
                     break;
 
-                // line below as follows would fail test 3 & 4 -> why?
+                // line below as follows would fail test 3 & 4, some fields initialized with -inf?
                 // if (dp[n][j][happ] - mag_penalty >= power){
                 if (dp[n][j][happ] >= power + mag_penalty)
                 {
