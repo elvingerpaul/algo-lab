@@ -1,0 +1,8 @@
+tags: DFS, binary search, maps
+
+## Intuition
+One should notice here that each branch of the tree is sorted in the sense that ancestor's age is always greater. Thus this should allow us to perform some sort of binary search from a given node all the way up to the root in order to find the species with an age not older than the specified age. The main challenge consists in how we come up with this list without having to preprocess the tree by creating all of these lists.
+
+Instead of executing the queries in order we will first read them in and then execute them in an order that will be more suitable. Assume we traverse the tee in a DFS manner starting all the way from the root. Try to picture the call stack of this DFS once we arrive at some node `n` in the tree for which we want to execute a query. The call stack actually represents exactly the list that we want to perform the binary search on. So the idea is to jst traverse the tree in a DFS maner once. Each time we arrive at a node we check whether there are any queries to be executed for this node. If yes, we execute them on the call stack if not we proceed to the children nodes.
+In order for this to work we need to represent the call stack as a list with species elements together with their age. This can be easily done by maintaining a list where we push an element to the call stack each time we visit it and remove it again at the end of the dfs call once we processed all of its children.
+We will store the results of the queries and will later on output them in the original order.
