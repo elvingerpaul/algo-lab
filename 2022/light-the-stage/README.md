@@ -1,0 +1,7 @@
+tags: Binary Search, Delaunay Triangulation
+
+## Intuition
+Note that the constraint on `m <= 5` is not correct and it turns out to be bigger in the testcases.
+We want to find the latest round in which the last participants loose. The idea is to this in a binary search maner given that we know that the lights sort of correspond to rounds since they are turned on in the order that we read them from the input.
+
+Let start by considering only the first half of lights. We can build the Delaunay triangulation for all the lamps them and check which participants have a nearest lamp that when swithed on they will be in the spot, i.e they loose. We can be sure that these pariticipants will also loose when we would consider any set of lamps that inlcudes lamps beyond the middle. If we have at least one paritipant surviving, than we should take more lamps into consideration and update our left boundary of the binary search. If however nobody survives with the given set of lamps, there is no need to look beyond the lamps under consideration. Rather we want to decrease the number of lamps under consideration to find a better bound on the round in which a participant looses. At the end we can simply look for the highest round in which a pariticpant looses and print out all pariticpants that loose in the same round in order.
